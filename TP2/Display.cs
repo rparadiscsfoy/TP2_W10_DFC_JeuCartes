@@ -1,227 +1,276 @@
-﻿namespace TP2
+﻿using System.Collections.Generic;
+
+namespace TP2
 {
     class Display
     {
         public const int CARD_WIDTH = 30;
         public const int CARD_HEIGHT = 14;
-        public static readonly string[] BACKGROUND_LOGO = {
-      "                         ",
-      "                         ",
-      "                         ",
-      "                         ",
-      "                         ",
-      "                         ",
-      "                         ",
-      "                         ",
-      "                         ",
-      "                         ",
-      "                         ",
-      "                         "
-    };
+        public const string FULL_BORDER = "*****************************";
+        public const string EMPTY_BORDER = "*                           *";
 
-        public static void DrawArrayOfStrings(string[] logo, int posX, int posY, ConsoleColor color)
+        public const ConsoleColor DEFAULT_COLOR = ConsoleColor.White;
+
+        #region SuitSymbols
+
+        private static readonly string[] HEART_SYMBOL =
         {
-            for (int i = 0; i < logo.Length; i++)
-            {
-                WriteString(logo[i], posX, posY + i, color);
-            }
-        }
+            "XX XX",
+            "XXXXX",
+            "XXXXX",
+            " XXX ",
+            "  X  ",
+        };
+
+        private static readonly string[] DIAMOND_SYMBOL =
+        {
+            "  X  ",
+            " XXX ",
+            "XXXXX",
+            " XXX ",
+            "  X  ",
+        };
+
+        private static readonly string[] SPADE_SYMBOL =
+        {
+            "  X  ",
+            " XXX ",
+            "XXXXX",
+            "X X X",
+            " XXX ",
+        };
+
+        private static readonly string[] CLUB_SYMBOL =
+        {
+            " XXX ",
+            "XXXXX",
+            "XXXXX",
+            "X X X",
+            " XXX ",
+        };
+
+        public static readonly string[][] SUIT_SYMBOLS =
+        {
+            HEART_SYMBOL,
+            DIAMOND_SYMBOL,
+            SPADE_SYMBOL,
+            CLUB_SYMBOL,
+        };
+
+        #endregion
+
+        #region ValueSymbols
+
+        private static readonly string[] ACE_SYMBOL =
+        {
+            "XXXXX",
+            "X   X",
+            "XXXXX",
+            "X   X",
+            "X   X",
+        };
+
+        private static readonly string[] TWO_SYMBOL =
+        {
+            " XXX ",
+            "X  XX",
+            "  XX ",
+            " XX  ",
+            "XXXXX",
+        };
+
+        private static readonly string[] THREE_SYMBOL =
+        {
+            " XXX ",
+            "X  XX",
+            "  XX ",
+            "X  XX",
+            " XXX ",
+        };
+
+        private static readonly string[] FOUR_SYMBOL =
+        {
+            "XX XX",
+            "XX XX",
+            "XXXXX",
+            "   XX",
+            "   XX",
+        };
+
+        private static readonly string[] FIVE_SYMBOL =
+        {
+            "XXXXX",
+            "XX   ",
+            "XXXXX",
+            "   XX",
+            "XXXXX",
+        };
+
+        private static readonly string[] SIX_SYMBOL =
+        {
+            " X   ",
+            "X    ",
+            "XXXX ",
+            "X   X",
+            " XXX ",
+        };
+
+        private static readonly string[] SEVEN_SYMBOL =
+        {
+            "XXXXX",
+            "   XX",
+            "  XX ",
+            " XX  ",
+            "XX   ",
+        };
+
+        private static readonly string[] EIGHT_SYMBOL =
+        {
+            " XXX ",
+            "X   X",
+            " XXX ",
+            "X   X",
+            " XXX ",
+        };
+
+        private static readonly string[] NINE_SYMBOL =
+        {
+            " XXX ",
+            "X   X",
+            "XXXXX",
+            "   XX",
+            " XX  ",
+        };
+
+        private static readonly string[] TEN_SYMBOL =
+        {
+            "X XXX",
+            "X X X",
+            "X X X",
+            "X X X",
+            "X XXX",
+        };
+
+        private static readonly string[] JACK_SYMBOL =
+        {
+            "   XX",
+            "   XX",
+            "   XX",
+            "XX XX",
+            "XXXXX",
+        };
+
+        private static readonly string[] QUEEN_SYMBOL =
+        {
+            " XXX ",
+            "X   X",
+            "X   X",
+            " XXX ",
+            "   X ",
+        };
+
+        private static readonly string[] KING_SYMBOL =
+        {
+            "XX XX",
+            "XXX  ",
+            "XXX  ",
+            "XX X ",
+            "XX  X",
+        };
+
+        public static readonly string[][] VALUE_SYMBOLS =
+        {
+            ACE_SYMBOL,
+            TWO_SYMBOL,
+            THREE_SYMBOL,
+            FOUR_SYMBOL,
+            FIVE_SYMBOL,
+            SIX_SYMBOL,
+            SEVEN_SYMBOL,
+            EIGHT_SYMBOL,
+            NINE_SYMBOL,
+            TEN_SYMBOL,
+            JACK_SYMBOL,
+            QUEEN_SYMBOL,
+            KING_SYMBOL,
+        };
+
+        #endregion
+
         public static void DrawCard(int value, int suit, int posX, int posY)
         {
-            string[] border ={
-      "*****************************",
-      "*                           *",
-      "*                           *",
-      "*                           *",
-      "*                           *",
-      "*                           *",
-      "*                           *",
-      "*                           *",
-      "*                           *",
-      "*                           *",
-      "*                           *",
-      "*                           *",
-      "*                           *",
-      "*****************************",
-      };
-
-            ConsoleColor color = ConsoleColor.White;
-            string[] logo = BACKGROUND_LOGO;
-            
-            DrawArrayOfStrings(border, posX, posY, ConsoleColor.Black);
-
-            Console.BackgroundColor = color;
-            DrawArrayOfStrings(logo, posX + 2, posY + 1, color);
+            DrawCardBorder(posX, posY);
 
             // haut gauche
-            DrawSuit(posX + 2, posY + 2, suit);
+            DrawSuit(posX + 3, posY + 1, suit);
 
             // Bas droite
-            DrawCardValue(posX + 22, posY + 8, value, suit);
+            DrawCardValue(posX + 22, posY + 9, value, suit);
 
             Console.BackgroundColor = ConsoleColor.White;
         }
-        public static void DrawDiamond(int centerPosX, int centerPosY)
-        {
-            WriteString("  X  ", centerPosX, centerPosY - 1, ConsoleColor.Red);
-            WriteString(" XXX ", centerPosX, centerPosY, ConsoleColor.Red);
-            WriteString(" XXX ", centerPosX, centerPosY + 1, ConsoleColor.Red);
-            WriteString("  X  ", centerPosX, centerPosY + 2, ConsoleColor.Red);
-        }
 
-        public static void DrawHeart(int centerPosX, int centerPosY)
+        private static void DrawCardBorder(int posX, int posY)
         {
-            WriteString("XX XX", centerPosX, centerPosY - 1, ConsoleColor.Red);
-            WriteString("XXXXX", centerPosX, centerPosY, ConsoleColor.Red);
-            WriteString(" XXX ", centerPosX, centerPosY + 1, ConsoleColor.Red);
-            WriteString("  X  ", centerPosX, centerPosY + 2, ConsoleColor.Red);
-        }
+            Console.ForegroundColor = ConsoleColor.Black;
 
-        public static void DrawClub(int centerPosX, int centerPosY)
-        {
-            WriteString("  X  ", centerPosX, centerPosY - 1, ConsoleColor.Black);
-            WriteString("X X X", centerPosX, centerPosY, ConsoleColor.Black);
-            WriteString(" XXX ", centerPosX, centerPosY + 1, ConsoleColor.Black);
-            WriteString("  X  ", centerPosX, centerPosY + 2, ConsoleColor.Black);
-        }
-
-        public static void DrawSpade(int centerPosX, int centerPosY)
-        {
-            WriteString("  X  ", centerPosX, centerPosY - 1, ConsoleColor.Black);
-            WriteString(" XXX ", centerPosX, centerPosY, ConsoleColor.Black);
-            WriteString("XXXXX", centerPosX, centerPosY + 1, ConsoleColor.Black);
-            WriteString("  X  ", centerPosX, centerPosY + 2, ConsoleColor.Black);
-        }
-
-        public static void DrawSuit(int centerPosX, int centerPosY, int suit)
-        {
-            switch (suit)
+            WriteTextAt(FULL_BORDER, posX, posY);
+            for (int i = 1; i < CARD_HEIGHT; i++)
             {
-                case Game.HEART:
-                    DrawHeart(centerPosX, centerPosY); 
-                    break;
-                case Game.DIAMOND:
-                    DrawDiamond(centerPosX, centerPosY);
-                    break;
-                case Game.SPADE:
-                    DrawSpade(centerPosX, centerPosY);
-                    break;
-                case Game.CLUB:
-                    DrawClub(centerPosX, centerPosY);
-                    break;
+                WriteTextAt(EMPTY_BORDER, posX, posY + i);
             }
+            WriteTextAt(FULL_BORDER, posX, posY + CARD_HEIGHT);
+        }
+
+
+        public static void DrawSuit(int posX, int posY, int suit)
+        {
+            ConsoleColor suitColor = suit > Game.DIAMOND ? ConsoleColor.Black : ConsoleColor.Red;
+
+            for (int i = 0; i < SUIT_SYMBOLS[suit].Length; i++)
+            {
+                for (int j = 0; j < SUIT_SYMBOLS[suit][i].Length; j++)
+                {
+                    DrawSuitPixel(SUIT_SYMBOLS[suit][i][j], posX + j, posY + i, suitColor);
+                }
+            }
+        }
+
+        public static void DrawSuitPixel(char marker, int posX, int posY, ConsoleColor drawColor)
+        {
+            DrawColorAt(posX, posY, marker == 'X' ? drawColor : DEFAULT_COLOR);
         }
 
         public static void DrawCardValue(int posX, int posY, int value, int suit)
         {
-            ConsoleColor color = suit > Game.DIAMOND ? ConsoleColor.Black : ConsoleColor.Red;
+            ConsoleColor suitColor = suit > Game.DIAMOND ? ConsoleColor.Black : ConsoleColor.Red;
 
-            switch (value)
+            for (int i = 0; i < VALUE_SYMBOLS[value].Length; i++)
             {
-                case Game.ACE:
-                    WriteString("XXXXX", posX, posY, color);
-                    WriteString("X   X", posX, posY + 1, color);
-                    WriteString("XXXXX", posX, posY + 2, color);
-                    WriteString("X   X", posX, posY + 3, color);
-                    WriteString("X   X", posX, posY + 4, color);
-                    break;
-                case Game.TWO:
-                    WriteString(" XXX ", posX, posY, color);
-                    WriteString("X  XX", posX, posY + 1, color);
-                    WriteString("  XX ", posX, posY + 2, color);
-                    WriteString(" XX ", posX, posY + 3, color);
-                    WriteString("XXXXX", posX, posY + 4, color);
-                    break;
-                case Game.THREE:
-                    WriteString(" XXX ", posX, posY, color);
-                    WriteString("X  XX", posX, posY + 1, color);
-                    WriteString("  XX ", posX, posY + 2, color);
-                    WriteString("X  XX", posX, posY + 3, color);
-                    WriteString(" XXX", posX, posY + 4, color);
-                    break;
-                case Game.FOUR:
-                    WriteString("XX XX", posX, posY, color);
-                    WriteString("XX XX", posX, posY + 1, color);
-                    WriteString("XXXXX", posX, posY + 2, color);
-                    WriteString("   XX", posX, posY + 3, color);
-                    WriteString("   XX", posX, posY + 4, color);
-                    break;
-                case Game.FIVE:
-                    WriteString("XXXXX", posX, posY, color);
-                    WriteString("XX   ", posX, posY + 1, color);
-                    WriteString("XXXX ", posX, posY + 2, color);
-                    WriteString("  XXX", posX, posY + 3, color);
-                    WriteString("XXXX ", posX, posY + 4, color);
-                    break;
-                case Game.SIX:
-                    WriteString(" X   ", posX, posY, color);
-                    WriteString("X    ", posX, posY + 1, color);
-                    WriteString("XXXX ", posX, posY + 2, color);
-                    WriteString("X   X", posX, posY + 3, color);
-                    WriteString(" XXX ", posX, posY + 4, color);
-                    break;
-                case Game.SEVEN:
-                    WriteString("XXXXX", posX, posY, color);
-                    WriteString("   XX", posX, posY + 1, color);
-                    WriteString("  XX ", posX, posY + 2, color);
-                    WriteString(" XX  ", posX, posY + 3, color);
-                    WriteString("XX   ", posX, posY + 4, color);
-                    break;
-                case Game.EIGHT:
-                    WriteString(" XXX ", posX, posY, color);
-                    WriteString("X   X", posX, posY + 1, color);
-                    WriteString(" XXX ", posX, posY + 2, color);
-                    WriteString("X   X", posX, posY + 3, color);
-                    WriteString(" XXX ", posX, posY + 4, color);
-                    break;
-                case Game.NINE:
-                    WriteString(" XXX ", posX, posY, color);
-                    WriteString("X   X", posX, posY + 1, color);
-                    WriteString("XXXXX", posX, posY + 2, color);
-                    WriteString("   XX", posX, posY + 3, color);
-                    WriteString(" XX  ", posX, posY + 4, color);
-                    break;
-                case Game.TEN:
-                    WriteString("X XXX", posX, posY, color);
-                    WriteString("X X X", posX, posY + 1, color);
-                    WriteString("X X X", posX, posY + 2, color);
-                    WriteString("X X X", posX, posY + 3, color);
-                    WriteString("X XXX", posX, posY + 4, color);
-                    break;
-                case Game.JACK:
-                    WriteString("   XX", posX, posY, color);
-                    WriteString("   XX", posX, posY + 1, color);
-                    WriteString("   XX", posX, posY + 2, color);
-                    WriteString("XX XX", posX, posY + 3, color);
-                    WriteString("XXXXX", posX, posY + 4, color);
-                    break;
-                case Game.QUEEN:
-                    WriteString(" XXX ", posX, posY, color);
-                    WriteString("X   X", posX, posY + 1, color);
-                    WriteString("X   X", posX, posY + 2, color);
-                    WriteString(" XXX ", posX, posY + 3, color);
-                    WriteString("   X ", posX, posY + 4, color);
-                    break;
-                case Game.KING:
-                    WriteString("XX XX", posX, posY, color);
-                    WriteString("XXX  ", posX, posY + 1, color);
-                    WriteString("XXX  ", posX, posY + 2, color);
-                    WriteString("XX X ", posX, posY + 3, color);
-                    WriteString("XX  X", posX, posY + 4, color);
-                    break;
+                for (int j = 0; j < VALUE_SYMBOLS[value][i].Length; j++)
+                {
+                    DrawSuitPixel(VALUE_SYMBOLS[value][i][j], posX + j, posY + i, suitColor);
+                }
             }
         }
 
-
-        public static void WriteString(string message, int posX, int posY, ConsoleColor color)
+        public static void WriteTextAt(string message, int posX, int posY, ConsoleColor color = ConsoleColor.Black)
         {
             Console.SetCursorPosition(posX, posY);
             Console.ForegroundColor = color;
             Console.Write(message);
         }
+
+        public static void DrawColorAt(int posX, int posY, ConsoleColor color = ConsoleColor.Black)
+        {
+            Console.SetCursorPosition(posX, posY);
+            Console.BackgroundColor = color;
+            Console.Write(" ");
+        }
+
         public static void Clear()
         {
-            Console.BackgroundColor = ConsoleColor.White;
+            Console.BackgroundColor = DEFAULT_COLOR;
             Console.Clear();
             Console.CursorVisible = false;
         }
@@ -230,7 +279,7 @@
             Clear();
             for (int i = 0; i < cardValues.Length; i++)
             {
-                DrawCard(Game.GetValueFromCardIndex(cardValues[i]), 
+                DrawCard(Game.GetValueFromCardIndex(cardValues[i]),
                          Game.GetSuitFromCardIndex(cardValues[i]), i * CARD_WIDTH, 0);
             }
         }
@@ -242,14 +291,14 @@
                 string text = "[ ]";
                 if (selectedCards[i])
                     text = "[X]";
-                WriteString(text, (CARD_WIDTH - text.Length) / 2 + i * CARD_WIDTH, CARD_HEIGHT + 2, ConsoleColor.Black);
+                WriteTextAt(text, (CARD_WIDTH - text.Length) / 2 + i * CARD_WIDTH, CARD_HEIGHT + 2, ConsoleColor.Black);
             }
         }
         public static bool IsKeyAvailable()
         {
             return Console.KeyAvailable;
         }
-        public static void HighLightText(String message, int posX, int posY)
+        public static void HighlightText(string message, int posX, int posY)
         {
             Console.SetCursorPosition(posX, posY);
             Console.BackgroundColor = ConsoleColor.Black;
@@ -265,7 +314,7 @@
             String symbol = " ";
             if (selectedCards[current])
                 symbol = "X";
-            HighLightText(symbol, (Display.CARD_WIDTH - symbol.Length) / 2 + current * Display.CARD_WIDTH, Display.CARD_HEIGHT + 2);
+            HighlightText(symbol, (Display.CARD_WIDTH - symbol.Length) / 2 + current * Display.CARD_WIDTH, Display.CARD_HEIGHT + 2);
 
             while (true)
             {
@@ -285,20 +334,20 @@
                     symbol = " ";
                     if (selectedCards[current])
                         symbol = "X";
-                    HighLightText(symbol, (CARD_WIDTH - symbol.Length) / 2 + current * CARD_WIDTH, CARD_HEIGHT + 2);
+                    HighlightText(symbol, (CARD_WIDTH - symbol.Length) / 2 + current * CARD_WIDTH, CARD_HEIGHT + 2);
                 }
             }
         }
         public static void ShowInstructions()
         {
-            WriteString("Appuyez sur espace pour sélectionner/désélectionner la carte.", 0, CARD_HEIGHT + 10, ConsoleColor.Black);
-            WriteString("Appuyez sur tab pour passer à la carte suivante.", 0, CARD_HEIGHT + 11, ConsoleColor.Black);
-            WriteString("Appuyez sur enter pour relancer les cartes non sélectionnées.", 0, CARD_HEIGHT + 12, ConsoleColor.Black);
+            WriteTextAt("Appuyez sur espace pour sélectionner/désélectionner la carte.", 0, CARD_HEIGHT + 10, ConsoleColor.Black);
+            WriteTextAt("Appuyez sur tab pour passer à la carte suivante.", 0, CARD_HEIGHT + 11, ConsoleColor.Black);
+            WriteTextAt("Appuyez sur enter pour relancer les cartes non sélectionnées.", 0, CARD_HEIGHT + 12, ConsoleColor.Black);
         }
 
         public static void ShowRemainingDraws(int remainingDraws)
         {
-            WriteString($"Il vous reste {remainingDraws} relance{AddPlural(remainingDraws)}", 0, CARD_HEIGHT + 13, ConsoleColor.Black);
+            WriteTextAt($"Il vous reste {remainingDraws} relance{AddPlural(remainingDraws)}", 0, CARD_HEIGHT + 13, ConsoleColor.Black);
         }
 
         public static string AddPlural(int quantity)
@@ -308,10 +357,3 @@
 
     }
 }
-
-
-
-
-
-
-

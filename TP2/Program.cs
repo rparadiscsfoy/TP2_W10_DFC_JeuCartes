@@ -40,7 +40,7 @@ namespace TP2
                 Game.DrawFaces(cardIndexes, selectedCards, availableCards);
             }
 
-            Display.WriteString("La partie est terminée!", 0, Console.WindowHeight - 1, ConsoleColor.Black);
+            Display.WriteTextAt("La partie est terminée!", 0, Console.WindowHeight - 1, ConsoleColor.Black);
         }
     }
 }

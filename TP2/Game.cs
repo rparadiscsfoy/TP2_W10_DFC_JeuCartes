@@ -83,7 +83,7 @@ namespace TP2
         public static void ShowScore(int[] cardIndexes)
         {
             int hand = GetHandScore(cardIndexes);
-            Display.WriteString($"Votre score est de : {hand}", 0, Display.CARD_HEIGHT + 14, ConsoleColor.Black);
+            Display.WriteTextAt($"Votre score est de : {hand}", 0, Display.CARD_HEIGHT + 14, ConsoleColor.Black);
         }
     }
 }
