@@ -63,7 +63,7 @@ namespace TP2
 
         private static readonly string[] ACE_SYMBOL =
         {
-            "XXXXX",
+            " XXX ",
             "X   X",
             "XXXXX",
             "X   X",
@@ -72,10 +72,10 @@ namespace TP2
 
         private static readonly string[] TWO_SYMBOL =
         {
+            "XXXX ",
+            "    X",
             " XXX ",
-            "X  XX",
-            "  XX ",
-            " XX  ",
+            "X    ",
             "XXXXX",
         };
 
@@ -90,25 +90,25 @@ namespace TP2
 
         private static readonly string[] FOUR_SYMBOL =
         {
-            "XX XX",
-            "XX XX",
+            "X  X ",
+            "X  X ",
+            "X  X ",
             "XXXXX",
-            "   XX",
-            "   XX",
+            "   X ",
         };
 
         private static readonly string[] FIVE_SYMBOL =
         {
             "XXXXX",
-            "XX   ",
-            "XXXXX",
-            "   XX",
-            "XXXXX",
+            "X    ",
+            "XXXX ",
+            "    X",
+            "XXXX ",
         };
 
         private static readonly string[] SIX_SYMBOL =
         {
-            " X   ",
+            " XXX ",
             "X    ",
             "XXXX ",
             "X   X",
@@ -118,10 +118,10 @@ namespace TP2
         private static readonly string[] SEVEN_SYMBOL =
         {
             "XXXXX",
-            "   XX",
-            "  XX ",
-            " XX  ",
-            "XX   ",
+            "    X",
+            "   X ",
+            "  X  ",
+            "  X  ",
         };
 
         private static readonly string[] EIGHT_SYMBOL =
@@ -137,9 +137,9 @@ namespace TP2
         {
             " XXX ",
             "X   X",
-            "XXXXX",
-            "   XX",
-            " XX  ",
+            " XXXX",
+            "    X",
+            "XXXX ",
         };
 
         private static readonly string[] TEN_SYMBOL =
@@ -153,11 +153,11 @@ namespace TP2
 
         private static readonly string[] JACK_SYMBOL =
         {
-            "   XX",
-            "   XX",
-            "   XX",
-            "XX XX",
             "XXXXX",
+            "   X ",
+            "   X ",
+            "X  X ",
+            " XX  ",
         };
 
         private static readonly string[] QUEEN_SYMBOL =
@@ -165,17 +165,17 @@ namespace TP2
             " XXX ",
             "X   X",
             "X   X",
-            " XXX ",
-            "   X ",
+            "X  X ",
+            " XX X",
         };
 
         private static readonly string[] KING_SYMBOL =
         {
-            "XX XX",
+            "X   X",
+            "X  X ",
             "XXX  ",
-            "XXX  ",
-            "XX X ",
-            "XX  X",
+            "X  X ",
+            "X   X",
         };
 
         public static readonly string[][] VALUE_SYMBOLS =
