@@ -41,14 +41,20 @@ namespace TP2
         public const int SAME_COLOR_SCORE = 24;
         #endregion
 
+        // PROF : à noter que les deux fonctions suivantes peuvent et doivent idéalement être complétées sans utiliser d'alternatives ou de switch case.
+        // Vous perdrez jusqu'à 50% des points du critère « La fonction X est correctement codée » si ce n'est pas le cas.
+        // Ne laissez toutefois pas cela vous empêcher de progresser! Vous êtes mieux de faire une méthode qui marche et que vous comprenez
+        // avec des if ou un switch que de passer tout votre temps à essayer de trouver une méthode que vous ne voyez/comprenez pas.
+        // Revenez-y plus tard s'il faut.
+        // Petit indice pour vous aider : la méthode la plus efficace tient en une ou deux lignes...
         public static int GetSuitFromCardIndex(int index)
         {
-            // PROF : À COMPLETER. Le code ci-après est incorrect
+            // PROF : À COMPLETER. Le code ci-après est incorrect et seulement présent pour que le projet compile.
             return 0;
         }
         public static int GetValueFromCardIndex(int index)
         {
-            // PROF : À COMPLETER. Le code ci-après est incorrect
+            // PROF : À COMPLETER. Le code ci-après est incorrect et seulement présent pour que le projet compile.
             return 0;
         }
 
@@ -58,13 +64,13 @@ namespace TP2
         }
         public static int GetScoreFromCardValue(int cardValue)
         {
-            // PROF : À COMPLETER. Le code ci-après est incorrect
+            // PROF : À COMPLETER. Le code ci-après est incorrect et seulement présent pour que le projet compile.
             return 0;
         }
 
         public static int GetHandScore(int[] cardIndexes)
         {
-            // PROF : À COMPLETER. Le code ci-après est incorrect
+            // PROF : À COMPLETER. Le code ci-après est incorrect et seulement présent pour que le projet compile.
             return 0;
         }
 
@@ -75,10 +81,6 @@ namespace TP2
         // ATTENTION! Suivez bien les noms dans les tests, car je vais utiliser mon propre fichier
         // (qui est exactement comme le vôtre, mais vous ne pourrez pas me faire parvenir un fichier
         // de tests avec vos noms de fonctions).
-
-
-
-
 
         public static void ShowScore(int[] cardIndexes)
         {
